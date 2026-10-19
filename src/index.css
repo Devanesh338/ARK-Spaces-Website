@@ -1,0 +1,355 @@
+/* ARK SPACES — Luxury Architectural & Interior Design Studio */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette matching Moodboard & Prompt Specification */
+  --color-warm-ivory: #F5F2EB;
+  --color-warm-ivory-light: #FAF8F5;
+  --color-white: #FFFFFF;
+  --color-deep-charcoal: #171713;
+  --color-dark-olive: #24291D;
+  --color-warm-taupe: #B6A58E;
+  --color-muted-beige: #D9CCBA;
+  --color-soft-stone: #E5E1DA;
+  --color-stone-border: rgba(23, 23, 19, 0.1);
+  --color-stone-border-light: rgba(23, 23, 19, 0.06);
+  --color-charcoal-muted: #5A5952;
+  --color-charcoal-light: #7A7971;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout and Spacing */
+  --max-width: 1400px;
+  --header-height: 80px;
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px rgba(23, 23, 19, 0.04);
+  --shadow-card: 0 10px 30px rgba(23, 23, 19, 0.06);
+  --shadow-elevated: 0 20px 40px rgba(23, 23, 19, 0.12);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-warm-ivory);
+  color: var(--color-deep-charcoal);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  background-color: var(--color-warm-ivory);
+}
+
+button, a {
+  touch-action: manipulation;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 16px; /* Prevents auto-zoom on iOS devices */
+}
+
+/* Typography Standards */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--color-deep-charcoal);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  color: var(--color-charcoal-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-warm-ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted-beige);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-warm-taupe);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+  box-sizing: border-box;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: var(--color-deep-charcoal);
+  color: var(--color-white);
+  padding: 0.85rem 1.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-deep-charcoal);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+.btn-primary:hover {
+  background-color: #000000;
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(23, 23, 19, 0.2);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: transparent;
+  color: var(--color-deep-charcoal);
+  padding: 0.85rem 1.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-deep-charcoal);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+.btn-secondary:hover {
+  background-color: var(--color-deep-charcoal);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn-light-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: transparent;
+  color: var(--color-white);
+  padding: 0.85rem 1.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+.btn-light-outline:hover {
+  background-color: var(--color-white);
+  color: var(--color-deep-charcoal);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background-color: var(--color-deep-charcoal);
+  color: var(--color-white);
+}
+
+/* Category Filter Pills */
+.filter-pill {
+  padding: 0.55rem 1.35rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-charcoal-muted);
+  background-color: transparent;
+  border: 1px solid var(--color-stone-border);
+  border-radius: 30px;
+  transition: var(--transition-smooth);
+}
+.filter-pill:hover {
+  color: var(--color-deep-charcoal);
+  border-color: var(--color-deep-charcoal);
+}
+.filter-pill.active {
+  background-color: var(--color-deep-charcoal);
+  color: var(--color-white);
+  border-color: var(--color-deep-charcoal);
+}
+
+/* Eyebrow Label */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-warm-taupe);
+  margin-bottom: 0.75rem;
+}
+
+/* Section Margins */
+.section-py {
+  padding-top: clamp(4rem, 8vw, 7.5rem);
+  padding-bottom: clamp(4rem, 8vw, 7.5rem);
+}
+
+.section-py-sm {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Thin Editorial Separators */
+.border-t-subtle {
+  border-top: 1px solid var(--color-stone-border);
+}
+.border-b-subtle {
+  border-bottom: 1px solid var(--color-stone-border);
+}
+
+/* Editorial Hover Zoom for Images */
+.img-zoom-container {
+  overflow: hidden;
+  position: relative;
+}
+.img-zoom-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom-container:hover img {
+  transform: scale(1.04);
+}
+
+/* Global Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Lenis Recommended Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Accessible Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile Responsiveness Guard & Typography Utilities */
+@media (max-width: 768px) {
+  .section-py {
+    padding-top: clamp(3rem, 6vw, 4.5rem);
+    padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  }
+  .section-py-sm {
+    padding-top: clamp(2rem, 4vw, 3rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  /* Prevent any element from exceeding viewport width */
+  img, video, canvas, iframe {
+    max-width: 100% !important;
+    height: auto;
+  }
+}
+/* Progressive Content Reveal Fallback Defaults (Ensures visibility if JS/GSAP is disabled or reduced motion is active) */
+.home-work-header,
+.home-category-card,
+.home-quote-box,
+.home-process-box,
+.home-cta-content,
+.home-cta-image-container {
+  opacity: 1;
+}

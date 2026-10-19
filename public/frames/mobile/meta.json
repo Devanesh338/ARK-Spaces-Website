@@ -1,0 +1,11 @@
+{
+  "name": "mobile",
+  "frameCount": 120,
+  "width": 720,
+  "height": 1280,
+  "aspectRatio": "0.5625",
+  "pattern": "/frames/mobile/frame_{index}.webp",
+  "firstFrame": "/frames/mobile/frame_0001.webp",
+  "lastFrame": "/frames/mobile/frame_0120.webp",
+  "generatedAt": "2026-10-18T19:24:23.392Z"
+}

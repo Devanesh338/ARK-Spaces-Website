@@ -1,0 +1,11 @@
+{
+  "name": "desktop",
+  "frameCount": 120,
+  "width": 1280,
+  "height": 720,
+  "aspectRatio": "1.7778",
+  "pattern": "/frames/desktop/frame_{index}.webp",
+  "firstFrame": "/frames/desktop/frame_0001.webp",
+  "lastFrame": "/frames/desktop/frame_0120.webp",
+  "generatedAt": "2026-10-19T10:00:13.760Z"
+}
