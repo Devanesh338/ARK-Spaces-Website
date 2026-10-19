@@ -34,20 +34,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
           .from('.testimonials-hero-sub', { y: 24, opacity: 0 }, '-=0.6')
           .from('.testimonials-hero-meta', { y: 20, opacity: 0 }, '-=0.5');
 
-    // 2. Review Summary Bar Entrance
-    gsap.from('.review-summary-card', {
-      scrollTrigger: {
-        trigger: '.review-summary-card',
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power2.out'
-    });
-
-    // 3. Staggered 4 Testimonial Cards Reveal
+    // 2. Staggered 4 Testimonial Cards Reveal
     gsap.from('.testimonial-card-item', {
       scrollTrigger: {
         trigger: '.testimonials-grid-section',
@@ -196,93 +183,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
         </div>
       </section>
 
-      {/* SECTION 2 — REVIEW SUMMARY & TRUST BAR */}
-      <section className="review-summary-section" style={{ transform: 'translateY(-30px)', position: 'relative', zIndex: 10, marginBottom: '2rem' }}>
-        <div className="container">
-          <div 
-            className="review-summary-card"
-            style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid var(--color-stone-border)',
-              borderRadius: '4px',
-              padding: '2rem 2.5rem',
-              boxShadow: 'var(--shadow-card)',
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '2rem'
-            }}
-          >
-            {/* Left: Score & Star Rating */}
-            <div className="review-summary-main-group" style={{ display: 'flex', alignItems: 'center', gap: '1.8rem', flexWrap: 'wrap' }}>
-              <div className="review-summary-score-col" style={{ textAlign: 'center', paddingRight: '1.8rem', borderRight: '1px solid var(--color-stone-border-light)' }}>
-                <div style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', fontWeight: 500, lineHeight: 1, color: 'var(--color-deep-charcoal)' }}>
-                  {REVIEW_SUMMARY.rating.toFixed(1)}
-                </div>
-                <div style={{ display: 'flex', gap: '2px', marginTop: '0.4rem', justifyContent: 'center' }}>
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill="#D4AF37" stroke="#D4AF37" />
-                  ))}
-                </div>
-              </div>
-
-              <div className="review-summary-text-col">
-                <h2 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--color-deep-charcoal)', marginBottom: '0.3rem' }}>
-                  Official {REVIEW_SUMMARY.source} Score
-                </h2>
-                <p style={{ fontSize: '0.88rem', color: 'var(--color-charcoal-muted)', margin: 0, lineHeight: 1.6 }}>
-                  Based on {REVIEW_SUMMARY.totalReviews}+ verified reviews from satisfied homeowners and commercial partners in Chennai.
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.45rem', fontSize: '0.78rem', color: 'var(--color-warm-taupe)', fontWeight: 500 }}>
-                  <CheckCircle2 size={13} color="var(--color-warm-taupe)" />
-                  <span>Sourced directly from arkspaces.com & Google Maps listing</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Direct Review Link Button */}
-            <div className="review-summary-btn-col">
-              <a 
-                href={REVIEW_SUMMARY.googleReviewUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="review-summary-cta-btn"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.6rem',
-                  padding: '0.75rem 1.6rem',
-                  fontSize: '0.82rem',
-                  fontWeight: 500,
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  color: 'var(--color-deep-charcoal)',
-                  backgroundColor: 'var(--color-warm-ivory)',
-                  border: '1px solid var(--color-stone-border)',
-                  borderRadius: '2px',
-                  transition: 'all 0.25s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-deep-charcoal)';
-                  e.currentTarget.style.color = '#FFFFFF';
-                  e.currentTarget.style.borderColor = 'var(--color-deep-charcoal)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-warm-ivory)';
-                  e.currentTarget.style.color = 'var(--color-deep-charcoal)';
-                  e.currentTarget.style.borderColor = 'var(--color-stone-border)';
-                }}
-              >
-                <span>Read all on Google</span>
-                <ExternalLink size={14} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3 — CURATED FOUR TESTIMONIALS (BALANCED 2-COLUMN DESKTOP / 1-COLUMN MOBILE) */}
+      {/* SECTION 2 — CURATED FOUR TESTIMONIALS (BALANCED 2-COLUMN DESKTOP / 1-COLUMN MOBILE) */}
       <section className="section-py testimonials-grid-section">
         <div className="container">
           
@@ -574,66 +475,6 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
             font-size: 0.78rem !important;
             color: rgba(255, 255, 255, 0.75) !important;
             white-space: normal !important;
-          }
-
-          /* Photo 2: Review Summary Card alignment */
-          .review-summary-section {
-            transform: translateY(-16px) !important;
-            margin-bottom: 1.5rem !important;
-          }
-          .review-summary-card {
-            padding: 1.35rem 1.25rem !important;
-            gap: 1.25rem !important;
-            flex-direction: column !important;
-            align-items: stretch !important;
-            border-radius: 6px !important;
-            box-sizing: border-box !important;
-          }
-          .review-summary-main-group {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 1rem !important;
-            width: 100% !important;
-          }
-          .review-summary-score-col {
-            padding-right: 0 !important;
-            border-right: none !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 0.85rem !important;
-            text-align: left !important;
-            width: 100% !important;
-            padding-bottom: 0.85rem !important;
-            border-bottom: 1px solid var(--color-stone-border-light) !important;
-          }
-          .review-summary-score-col > div:first-child {
-            font-size: 2.75rem !important;
-            line-height: 1 !important;
-          }
-          .review-summary-score-col > div:last-child {
-            margin-top: 0 !important;
-            justify-content: flex-start !important;
-          }
-          .review-summary-text-col {
-            width: 100% !important;
-          }
-          .review-summary-text-col h2 {
-            font-size: 1.12rem !important;
-            margin-bottom: 0.35rem !important;
-          }
-          .review-summary-text-col p {
-            font-size: 0.85rem !important;
-            line-height: 1.55 !important;
-          }
-          .review-summary-btn-col {
-            width: 100% !important;
-          }
-          .review-summary-cta-btn {
-            width: 100% !important;
-            justify-content: center !important;
-            box-sizing: border-box !important;
-            padding: 0.85rem 1rem !important;
-            text-align: center !important;
           }
         }
       `}</style>
