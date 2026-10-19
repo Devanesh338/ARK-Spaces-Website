@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { PageId, Project } from '../types';
 import { PROJECTS } from '../data/mockData';
 import { useGsapContext } from '../hooks/useGsapContext';
@@ -40,14 +40,18 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialCategory = 'A
     });
 
     // 2. Filter Pills Reveal
-    gsap.from('.project-filter-pill', {
-      y: 15,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.08,
-      ease: 'power2.out',
-      delay: 0.35
-    });
+    gsap.fromTo('.project-filter-pill', 
+      { y: 15, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.06,
+        ease: 'power2.out',
+        delay: 0.2,
+        clearProps: 'all'
+      }
+    );
 
     // 3. Project Cards Stagger
     gsap.from('.project-grid-card', {
@@ -64,11 +68,22 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialCategory = 'A
     });
   }, [selectedCategory]);
 
+  useEffect(() => {
+    // Safety check: ensure filter pills are always visible across all viewports
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.project-filter-pill').forEach((el) => {
+        (el as HTMLElement).style.opacity = '1';
+      });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [selectedCategory]);
+
   return (
     <div ref={containerRef} style={{ backgroundColor: 'var(--color-warm-ivory)' }}>
 
       {/* 1. HERO SECTION (Directly matching PDF Page 3) */}
       <section 
+        className="projects-hero-section"
         style={{
           position: 'relative',
           minHeight: '48vh',
@@ -94,7 +109,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialCategory = 'A
           }}
         />
 
-        <div className="container" style={{ position: 'relative', zIndex: 2, padding: '4.5rem 1.5rem' }}>
+        <div className="container projects-hero-container" style={{ position: 'relative', zIndex: 2, padding: '4.5rem 1.5rem' }}>
           <div style={{ maxWidth: '640px' }}>
             <h1 
               className="projects-hero-title"
@@ -116,11 +131,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialCategory = 'A
       </section>
 
       {/* 2. CATEGORY FILTERS & 2-COLUMN PROJECT GRID (Directly matching PDF Page 3) */}
-      <section className="section-py" style={{ backgroundColor: 'var(--color-warm-ivory)' }}>
+      <section className="section-py projects-content-section" style={{ backgroundColor: 'var(--color-warm-ivory)' }}>
         <div className="container">
 
           {/* Centered Filter Pills */}
           <div 
+            className="projects-filter-container"
             style={{ 
               display: 'flex', 
               flexWrap: 'wrap', 
@@ -224,11 +240,41 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ initialCategory = 'A
         </div>
       </section>
 
-      {/* Responsive style for narrow viewports */}
+      {/* Responsive style for mobile view alone (preserves desktop completely) */}
       <style>{`
+        .project-filter-pill {
+          opacity: 1;
+        }
         @media (max-width: 768px) {
+          .projects-hero-section {
+            min-height: auto !important;
+          }
+          .projects-hero-container {
+            padding: 2.25rem 1.25rem !important;
+          }
+          .projects-hero-title {
+            font-size: 2.2rem !important;
+            margin-bottom: 0.35rem !important;
+          }
+          .projects-hero-sub {
+            font-size: 0.98rem !important;
+          }
+          .projects-content-section {
+            padding-top: 1.25rem !important;
+            padding-bottom: 2.5rem !important;
+          }
+          .projects-filter-container {
+            margin-bottom: 1.5rem !important;
+            gap: 0.5rem !important;
+          }
+          .project-filter-pill {
+            padding: 0.45rem 1.05rem !important;
+            font-size: 0.78rem !important;
+            opacity: 1 !important;
+          }
           .projects-two-column-grid {
             grid-template-columns: 1fr !important;
+            gap: 1.75rem !important;
           }
         }
       `}</style>
