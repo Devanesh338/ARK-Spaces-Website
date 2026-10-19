@@ -80,6 +80,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
       
       {/* SECTION 1 — HERO */}
       <section 
+        className="testimonials-hero-section"
         style={{
           position: 'relative',
           minHeight: '58vh',
@@ -165,26 +166,30 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              flexWrap: 'wrap',
               gap: '0.65rem 1.25rem',
               maxWidth: '100%',
               padding: '0.65rem 1.4rem',
               backgroundColor: 'rgba(255, 255, 255, 0.08)',
               backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
               borderRadius: '40px',
               border: '1px solid rgba(255, 255, 255, 0.15)'
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={15} fill="#D4AF37" stroke="#D4AF37" />
-              ))}
+            <div className="hero-meta-stars-group" style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={15} fill="#D4AF37" stroke="#D4AF37" />
+                ))}
+              </div>
+              <span className="hero-meta-rating-text" style={{ fontSize: '0.85rem', color: '#FFFFFF', fontWeight: 500, letterSpacing: '0.02em', whiteSpace: 'nowrap' }}>
+                {REVIEW_SUMMARY.rating.toFixed(1)} Rating on {REVIEW_SUMMARY.source}
+              </span>
             </div>
-            <span style={{ fontSize: '0.85rem', color: '#FFFFFF', fontWeight: 500, letterSpacing: '0.02em' }}>
-              {REVIEW_SUMMARY.rating.toFixed(1)} Rating on {REVIEW_SUMMARY.source}
-            </span>
-            <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>•</span>
-            <span style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.8)' }}>
+
+            <span className="hero-meta-bullet" style={{ color: 'rgba(255, 255, 255, 0.4)' }}>•</span>
+
+            <span className="hero-meta-count-text" style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.8)', whiteSpace: 'nowrap' }}>
               {REVIEW_SUMMARY.totalReviews}+ Verified Reviews
             </span>
           </div>
@@ -192,7 +197,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
       </section>
 
       {/* SECTION 2 — REVIEW SUMMARY & TRUST BAR */}
-      <section style={{ transform: 'translateY(-30px)', position: 'relative', zIndex: 10, marginBottom: '2rem' }}>
+      <section className="review-summary-section" style={{ transform: 'translateY(-30px)', position: 'relative', zIndex: 10, marginBottom: '2rem' }}>
         <div className="container">
           <div 
             className="review-summary-card"
@@ -210,8 +215,8 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
             }}
           >
             {/* Left: Score & Star Rating */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.8rem', flexWrap: 'wrap' }}>
-              <div style={{ textAlign: 'center', paddingRight: '1.8rem', borderRight: '1px solid var(--color-stone-border-light)' }}>
+            <div className="review-summary-main-group" style={{ display: 'flex', alignItems: 'center', gap: '1.8rem', flexWrap: 'wrap' }}>
+              <div className="review-summary-score-col" style={{ textAlign: 'center', paddingRight: '1.8rem', borderRight: '1px solid var(--color-stone-border-light)' }}>
                 <div style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem', fontWeight: 500, lineHeight: 1, color: 'var(--color-deep-charcoal)' }}>
                   {REVIEW_SUMMARY.rating.toFixed(1)}
                 </div>
@@ -222,14 +227,14 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
                 </div>
               </div>
 
-              <div>
+              <div className="review-summary-text-col">
                 <h2 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--color-deep-charcoal)', marginBottom: '0.3rem' }}>
                   Official {REVIEW_SUMMARY.source} Score
                 </h2>
-                <p style={{ fontSize: '0.88rem', color: 'var(--color-charcoal-muted)', margin: 0 }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--color-charcoal-muted)', margin: 0, lineHeight: 1.6 }}>
                   Based on {REVIEW_SUMMARY.totalReviews}+ verified reviews from satisfied homeowners and commercial partners in Chennai.
                 </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.4rem', fontSize: '0.78rem', color: 'var(--color-warm-taupe)', fontWeight: 500 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.45rem', fontSize: '0.78rem', color: 'var(--color-warm-taupe)', fontWeight: 500 }}>
                   <CheckCircle2 size={13} color="var(--color-warm-taupe)" />
                   <span>Sourced directly from arkspaces.com & Google Maps listing</span>
                 </div>
@@ -237,11 +242,12 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
             </div>
 
             {/* Right: Direct Review Link Button */}
-            <div>
+            <div className="review-summary-btn-col">
               <a 
                 href={REVIEW_SUMMARY.googleReviewUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="review-summary-cta-btn"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -521,6 +527,116 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ onNavigate }
         </div>
       </section>
 
+      {/* Mobile-only alignment fixes for Review Summary Card (Photo 2) and Hero Meta Pill (Photo 3) */}
+      <style>{`
+        @media (max-width: 767px) {
+          /* Photo 3: Hero Meta Pill alignment */
+          .testimonials-hero-section {
+            padding-top: 5rem !important;
+            padding-bottom: 3.5rem !important;
+          }
+          .testimonials-hero-title {
+            font-size: clamp(2rem, 7.5vw, 2.6rem) !important;
+            margin-bottom: 1rem !important;
+          }
+          .testimonials-hero-sub {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .testimonials-hero-meta {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 0.35rem !important;
+            padding: 0.65rem 1.1rem !important;
+            border-radius: 20px !important;
+            max-width: calc(100% - 2rem) !important;
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+          }
+          .testimonials-hero-meta .hero-meta-stars-group {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 0.45rem !important;
+            flex-wrap: wrap !important;
+          }
+          .testimonials-hero-meta .hero-meta-rating-text {
+            font-size: 0.82rem !important;
+            white-space: normal !important;
+          }
+          .testimonials-hero-meta .hero-meta-bullet {
+            display: none !important;
+          }
+          .testimonials-hero-meta .hero-meta-count-text {
+            font-size: 0.78rem !important;
+            color: rgba(255, 255, 255, 0.75) !important;
+            white-space: normal !important;
+          }
+
+          /* Photo 2: Review Summary Card alignment */
+          .review-summary-section {
+            transform: translateY(-16px) !important;
+            margin-bottom: 1.5rem !important;
+          }
+          .review-summary-card {
+            padding: 1.35rem 1.25rem !important;
+            gap: 1.25rem !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            border-radius: 6px !important;
+            box-sizing: border-box !important;
+          }
+          .review-summary-main-group {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 1rem !important;
+            width: 100% !important;
+          }
+          .review-summary-score-col {
+            padding-right: 0 !important;
+            border-right: none !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.85rem !important;
+            text-align: left !important;
+            width: 100% !important;
+            padding-bottom: 0.85rem !important;
+            border-bottom: 1px solid var(--color-stone-border-light) !important;
+          }
+          .review-summary-score-col > div:first-child {
+            font-size: 2.75rem !important;
+            line-height: 1 !important;
+          }
+          .review-summary-score-col > div:last-child {
+            margin-top: 0 !important;
+            justify-content: flex-start !important;
+          }
+          .review-summary-text-col {
+            width: 100% !important;
+          }
+          .review-summary-text-col h2 {
+            font-size: 1.12rem !important;
+            margin-bottom: 0.35rem !important;
+          }
+          .review-summary-text-col p {
+            font-size: 0.85rem !important;
+            line-height: 1.55 !important;
+          }
+          .review-summary-btn-col {
+            width: 100% !important;
+          }
+          .review-summary-cta-btn {
+            width: 100% !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+            padding: 0.85rem 1rem !important;
+            text-align: center !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

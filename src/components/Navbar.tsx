@@ -12,7 +12,6 @@ import {
   Phone, 
   Compass, 
   Briefcase, 
-  Palette, 
   Calendar 
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/mockData';
@@ -84,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   };
 
   // Check if More menu has an active item
-  const isMoreActive = ['about', 'services', 'materials', 'consultation'].includes(currentPage);
+  const isMoreActive = ['about', 'services', 'consultation'].includes(currentPage);
 
   return (
     <>
@@ -627,35 +626,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                     <div>
                       <div style={{ fontWeight: 500, fontSize: '0.98rem' }}>Services</div>
                       <div style={{ fontSize: '0.76rem', color: 'rgba(255, 255, 255, 0.6)' }}>Residential, Modular Kitchens, Turnkey fit-out</div>
-                    </div>
-                  </div>
-                  <ArrowRight size={16} color="var(--color-warm-taupe)" />
-                </button>
-
-                {/* Materials & Moodboard Link */}
-                <button
-                  onClick={() => handleNavClick('materials')}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    minHeight: '52px',
-                    padding: '0.85rem 1rem',
-                    borderRadius: '8px',
-                    backgroundColor: currentPage === 'materials' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.04)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
-                    textAlign: 'left',
-                    color: '#FFFFFF',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
-                    <div style={{ color: 'var(--color-warm-taupe)' }}>
-                      <Palette size={20} />
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 500, fontSize: '0.98rem' }}>Materials & Moodboards</div>
-                      <div style={{ fontSize: '0.76rem', color: 'rgba(255, 255, 255, 0.6)' }}>Tactile woods, natural stone, linens & metals</div>
                     </div>
                   </div>
                   <ArrowRight size={16} color="var(--color-warm-taupe)" />
